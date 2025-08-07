@@ -2,17 +2,23 @@ import sys
 
 import pygame
 
+from settings import Settings
+
 
 class AlienInvasion:
     def __init__(self):
         pygame.init()
         self.clock = pygame.time.Clock()
+        self.settings = Settings()
 
-        self.screent = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((
+            self.settings.screen_width,
+            self.settings.screen_height,
+        ))
         pygame.display.set_caption("外星人入侵")
 
         # 设置背景颜色
-        self.bg_color = (230, 230, 230)
+        self.bg_color = self.settings.bg_color
 
     def run_game(self):
         while True:
@@ -21,7 +27,7 @@ class AlienInvasion:
                     sys.exit()
 
             # 每次循环时都重绘屏幕
-            self.screent.fill(self.bg_color)
+            self.screen.fill(self.bg_color)
 
             # 最近绘制的屏幕可见
             pygame.display.flip()
